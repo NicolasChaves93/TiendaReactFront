@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import axios from 'axios';
-import { Link } from 'react-router-dom';
+import { Link } from "react-router-dom";
+import {Navigate} from  'react-router-dom'
 
 class Productos extends Component {
     state = {
@@ -20,7 +21,21 @@ class Productos extends Component {
             })
         });
     }
+
+    borrarProducto = (id) =>{
+        axios.delete("http://localhost:8080/api/productos/producto/"+id)
+        .then(res=>{
+            this.setState({
+                productos: res.data,
+                status: "deleted"
+            })
+            window.location.reload(true);
+        })
+    }
     render(){
+        if(this.state.status === "deleted"){
+            return <Navigate to = "/productos" />
+        }
         return(
             <div>
                 <h1 className='title'>Productos</h1>
@@ -49,7 +64,14 @@ class Productos extends Component {
                                             <td>{producto.precio_compra}</td>
                                             <td>{producto.iva_compra}</td>
                                             <td>{producto.precio_venta}</td>
-                                            <td><button>Editar</button><button>Eliminar</button></td>
+                                            <td>
+                                                <button>Editar</button>
+                                                <button onClick = {
+                                                    ()=>{
+                                                        this.borrarProducto(producto._id)
+                                                    }
+                                                }>Eliminar</button>
+                                            </td>
                                         </tr>
                                     </React.Fragment>
                                 );
