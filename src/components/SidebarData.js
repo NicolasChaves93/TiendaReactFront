@@ -23,8 +23,8 @@ export const SidebarData = [
         cNAme: 'nav-text'
     },
     {
-        title: 'Ventas',
-        path: '/ventas',
+        title: 'Proveedores',
+        path: '/proveedores',
         icon: <FaIcons.FaEnvelopeOpenText />,
         cNAme: 'nav-text'
     },
