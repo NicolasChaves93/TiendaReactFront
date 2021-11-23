@@ -1,13 +1,17 @@
 import React, { Component } from 'react'
 import axios from 'axios';
+import { Link } from 'react-router-dom';
 
 class Productos extends Component {
     state = {
         productos:[]
     }
 
-    render(){
+    componentWillMount(){
+        this.getProductos();
+    }
 
+    getProductos = () =>{
         axios.get("http://localhost:8080/api/productos/")
         .then(res => {
             console.log(res.data);
@@ -15,9 +19,12 @@ class Productos extends Component {
                 productos: res.data
             })
         });
+    }
+    render(){
         return(
             <div>
-                <h1>Productos</h1>
+                <h1 className='title'>Productos</h1>
+                <Link to = "/agregarProducto">Agregar Producto</Link>
                 <table>
                     <thead>
                         <tr>
