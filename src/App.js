@@ -8,10 +8,30 @@ import Clientes from "./pages/Clientes";
 import React from "react";
 import AgregarProducto from './components/AgregarProducto'
 import EditarProducto from "./components/EditarProducto";
+import { useAuth0 } from "@auth0/auth0-react";
+
+import {LoginButton} from "./components/Login";
+import {LogoutButton} from "./components/Logout"
+import { Profile } from "./components/Profile";
+
 
 function App() {
+  const {isAuthenticated} = useAuth0();
   return (
     <React.Fragment>
+      <div>
+        {isAuthenticated ? (
+          <>
+          <Profile />
+          <LogoutButton />
+          </>
+        ) : (
+          <LoginButton />
+        )
+      }
+        
+
+      </div>
       <Router>
         <Navbar />
         <Routes>
