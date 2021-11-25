@@ -7,6 +7,7 @@ import Productos from './pages/Productos'
 import Clientes from "./pages/Clientes";
 import React from "react";
 import AgregarProducto from './components/AgregarProducto'
+import EditarProducto from "./components/EditarProducto";
 
 function App() {
   return (
@@ -19,6 +20,7 @@ function App() {
           <Route exact path='/reportes' element={<Reportes/>}/>
           <Route exact path='/productos' element={<Productos/>}/>
           <Route exact path='/agregarProducto' element={<AgregarProducto/>}/>
+          <Route exact path='/editarProducto/:id' element={<EditarProducto/>}/>
         </Routes>
       </Router>
     </React.Fragment>

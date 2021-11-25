@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import axios from 'axios';
 import { Link } from "react-router-dom";
 import {Navigate} from  'react-router-dom'
+import swal from 'sweetalert';
 
 class Productos extends Component {
     state = {
@@ -29,6 +30,10 @@ class Productos extends Component {
                 productos: res.data,
                 status: "deleted"
             })
+            swal("Articulo eliminado",
+            "El articulo ha sido eliminado correctamente",
+            "success"
+            );
             window.location.reload(true);
         })
     }
@@ -65,7 +70,7 @@ class Productos extends Component {
                                             <td>{producto.iva_compra}</td>
                                             <td>{producto.precio_venta}</td>
                                             <td>
-                                                <button>Editar</button>
+                                            <Link to = {"/editarProducto/"+producto._id}>Editar</Link>
                                                 <button onClick = {
                                                     ()=>{
                                                         this.borrarProducto(producto._id)
