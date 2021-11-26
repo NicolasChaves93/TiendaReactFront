@@ -1,6 +1,7 @@
 import axios from 'axios';
 import React, { Component } from 'react'
 import {Navigate} from  'react-router-dom'
+import { Link } from "react-router-dom";
 
 export default class EditarProducto extends Component {
     productoId = null;
@@ -69,33 +70,46 @@ export default class EditarProducto extends Component {
             <div>
                 <h1 className='title'>Editar Producto</h1>
                 <form onSubmit={this.recibirFormulario}>
-                <div>
-                    <label>Codigo del producto</label>
-                    <input type = "text" name="codigo" ref = {this.codigo} defaultValue={this.state.producto.codigo_producto}/>
-                </div>
-                <div>
-                    <label>Producto</label>
-                    <input type = "text" name="producto" ref = {this.producto} defaultValue={this.state.producto.nombre_producto}/>
-                </div>
-                <div>
-                    <label>Nit Provedor</label>
-                    <input type = "text" name="nit" ref = {this.nit} defaultValue={this.state.producto.nitproveedor}/>
-                </div>
-                <div>
-                    <label>Precio compra</label>
-                    <input type = "text" name="precioCompra" ref =  {this.precioCompra} defaultValue={this.state.producto.precio_compra}/>
-                </div>
-                <div>
-                    <label>IVA</label>
-                    <input type = "text" name="iva" ref = {this.iva} defaultValue={this.state.producto.iva_compra}/>
-                <div>
-                    <label>Precio Venta</label>
-                    <input type = "text" name="precioVenta" ref = {this.precioVenta} defaultValue={this.state.producto.precio_venta}/>
-                </div>
-                <div>
-                    <input type = "Submit" />
-                </div>
-                </div>
+                    <table className="table table-borderless">
+                    <tr>
+                        <td>
+                            <div className="input-group mb-3" >
+                                <input type="number" name="codigo" ref = {this.codigo} className="form-control" placeholder="Codigo del producto" aria-label="codigo" aria-describedby="button-addon2" defaultValue={this.state.producto.codigo_producto}/>
+                            </div>
+                        </td>
+                        <td>
+                            <div className="input-group mb-3" >
+                                <input type="text" name="producto" ref = {this.producto} className="form-control" placeholder="Producto" aria-label="producto" aria-describedby="button-addon2" defaultValue={this.state.producto.nombre_producto}/>
+                            </div>
+                        </td>
+                        <td>
+                            <div className="input-group mb-3" >
+                                <input type="text" name="nit" ref = {this.nit} className="form-control" placeholder="Nit Provedor" aria-label="nit" aria-describedby="button-addon2" defaultValue={this.state.producto.nitproveedor}/>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <div className="input-group mb-3" >
+                                <input type="number" name="precioCompra" ref = {this.precioCompra} className="form-control" placeholder="Precio compra" aria-label="precioCompra" aria-describedby="button-addon2" defaultValue={this.state.producto.precio_compra}/>
+                            </div>
+                        </td>
+                        <td>
+                            <div className="input-group mb-3" >
+                                <input type="number" name="iva" ref = {this.iva} className="form-control" placeholder="IVA" aria-label="iva" aria-describedby="button-addon2" defaultValue={this.state.producto.iva_compra}/>
+                            </div>
+                        </td>
+                        <td>
+                            <div className="input-group mb-3" >
+                                <input type="text" name="precioVenta" ref = {this.precioVenta} className="form-control" placeholder="Precio Venta" aria-label="precioVenta" aria-describedby="button-addon2" defaultValue={this.state.producto.precio_venta}/>
+                            </div>
+                        </td>
+                    </tr>
+                    </table>
+                    <div className="col text-center"  >
+                        <button style={{ width: "120px", margin: "5px"}} className="btn btn-lg btn-primary" type = "Submit" >Guardar</button>
+                        <Link style={{width: "120px", margin: "5px"}} className="btn btn-lg btn btn-danger" to = "/productos/">Volver</Link>
+                    </div>
             </form>
             </div>
         )

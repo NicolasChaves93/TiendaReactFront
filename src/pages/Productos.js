@@ -42,11 +42,11 @@ class Productos extends Component {
             return <Navigate to = "/productos" />
         }
         return(
-            <div>
-                <h1 className='title'>Productos</h1>
-                <Link to = "/agregarProducto">Agregar Producto</Link>
-                <table>
-                    <thead>
+            <div className="col text-center">
+                <h1 className='title'>PRODUCTOS</h1>
+                <Link className="btn btn-success justify-content-center" to = "/agregarProducto">Agregar Producto</Link>
+                <table className="table table-hover table-responsive table-md align-middle table-bordered">
+                    <thead className="table-success">
                         <tr>
                             <th>Código Producto</th>
                             <th>Nombre Producto</th>
@@ -70,8 +70,8 @@ class Productos extends Component {
                                             <td>{producto.iva_compra}</td>
                                             <td>{producto.precio_venta}</td>
                                             <td>
-                                            <Link to = {"/editarProducto/"+producto._id}>Editar</Link>
-                                                <button onClick = {
+                                            <Link style={{width: "70px", margin: "5px"}} className="btn btn-outline-primary btn-sm" to = {"/editarProducto/"+producto._id}>Editar</Link>
+                                                <button style={{width: "70px"}} className="btn btn-outline-danger btn-sm" onClick = {
                                                     ()=>{
                                                         this.borrarProducto(producto._id)
                                                     }

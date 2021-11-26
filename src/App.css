@@ -14,3 +14,12 @@
   justify-content: center;
   font-size: 3rem;
 }
+
+table td, th {
+  text-align: center;
+}
+
+.table {
+  margin: auto;
+  width: 60% !important;
+}
