@@ -29,7 +29,7 @@ class AgregarProveedor extends Component {
             proveedor: proveedor
         })
 
-        axios.post("http://localhost:8080/api/proveedor/proveedor",proveedor)
+        axios.post("http://localhost:8080/api/proveedores/proveedor",proveedor)
         .then(res=>{
             if(res.data){
                 this.setState({

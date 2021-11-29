@@ -25,8 +25,9 @@ export default class EditarProducto extends Component {
         this.getProovedores(this.proveedorId);
     }
 
+    /* Funcion que consume la API y me trae el Proveedor para un Id especifico */
     getProovedores = (id) =>{
-        axios.get("http://localhost:8080/api/proveedor/proveedor/"+id)
+        axios.get("http://localhost:8080/api/proveedores/proveedor/"+id)
         .then(res => {
             if(res.data){
                 console.log(res.data);
@@ -51,7 +52,7 @@ export default class EditarProducto extends Component {
         }
 
 
-        axios.put("http://localhost:8080/api/proveedor/proveedor/"+this.proveedorId,proveedor)
+        axios.put("http://localhost:8080/api/proveedores/proveedor/"+this.proveedorId,proveedor)
         .then(res=>{
             if(res.data){
                 this.setState({
@@ -66,7 +67,7 @@ export default class EditarProducto extends Component {
         }
         return(
             <div>
-                <h1 className='title'>Editar Producto</h1>
+                <h1 className='title'>Editar Proveedor</h1>
                 <form onSubmit={this.recibirFormulario}>
                     <table className="table table-borderless">
                     <tr>

@@ -14,7 +14,7 @@ class Proveedores extends Component {
     }
 
     getProveedores = () =>{
-        axios.get("http://localhost:8080/api/proveedor/")
+        axios.get("http://localhost:8080/api/proveedores/")
         .then(res => {
             console.log(res.data);
             this.setState({
@@ -24,7 +24,7 @@ class Proveedores extends Component {
     }
 
     borrarProveedor = (id) =>{
-        axios.delete("http://localhost:8080/api/proveedor/proveedor/"+id)
+        axios.delete("http://localhost:8080/api/proveedores/proveedor/"+id)
         .then(res=>{
             this.setState({
                 proveedores: res.data,
@@ -42,10 +42,10 @@ class Proveedores extends Component {
             return <Navigate to = "/proveedores" />
         }
         return(
-            <div className="col text-center">
+            <div className="text-center">
                 <h1 className='title'>PROVEEDORES</h1>
                 <Link className="btn btn-success justify-content-center" to = "/agregarProveedor">Agregar Proveedor</Link>
-                <table className="table table-hover table-responsive table-md align-middle table-bordered">
+                <table className="table table-hover table-md table-bordered">
                     <thead className="table-success">
                         <tr>
                             <th>Nombre Proveedor</th>

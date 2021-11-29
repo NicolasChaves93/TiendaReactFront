@@ -101,7 +101,7 @@ export default class editarCliente extends Component {
                     </table>
                     <div className="col text-center"  >
                         <button style={{ width: "120px", margin: "5px"}} className="btn btn-lg btn-primary" type = "Submit" >Guardar</button>
-                        <Link style={{width: "120px", margin: "5px"}} className="btn btn-lg btn btn-danger" to = "/productos/">Volver</Link>
+                        <Link style={{width: "120px", margin: "5px"}} className="btn btn-lg btn btn-danger" to = "/clientes/">Volver</Link>
                     </div>
             </form>
             </div>
