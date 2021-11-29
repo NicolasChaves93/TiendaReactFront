@@ -21,7 +21,7 @@ function Navbar() {
             <Link to="#" className="menu-bars">
                 <FaIcons.FaBars onClick={showSidebar} />
             </Link>
-            <span><h2 style={{width: "1100px", color: "white"}}>TIENDA GENERICA</h2> </span>
+            <span><h2 style={{width: "1000px", color: "white"}}>TIENDA GENERICA</h2> </span>
             {isAuthenticated ?(
                 <div className="dropdown">
                     <a style = {{color: "white"}} href="/#" className="nav-link dropdown-toggle" data-toggle="dropdown">Cerrar sesión</a>

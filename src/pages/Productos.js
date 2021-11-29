@@ -42,10 +42,10 @@ class Productos extends Component {
             return <Navigate to = "/productos" />
         }
         return(
-            <div className="col text-center">
+            <div className="text-center">
                 <h1 className='title'>PRODUCTOS</h1>
                 <Link className="btn btn-success justify-content-center" to = "/agregarProducto">Agregar Producto</Link>
-                <table className="table table-hover table-responsive table-md align-middle table-bordered">
+                <table className="table table-hover table-md table-bordered">
                     <thead className="table-success">
                         <tr>
                             <th>Código Producto</th>

@@ -13,6 +13,7 @@ class Clientes extends Component {
         this.getCliente();
     }
 
+    /* Función para consumir la API y traer los clientes */
     getCliente = () =>{
         axios.get("http://localhost:8080/api/clientes/")
         .then(res => {
@@ -23,6 +24,7 @@ class Clientes extends Component {
         });
     }
 
+    /* Función para consumir la API y eliminar un cliente por Id */
     borrarCliente = (id) =>{
         axios.delete("http://localhost:8080/api/clientes/cliente/"+id)
         .then(res=>{
@@ -42,14 +44,14 @@ class Clientes extends Component {
             return <Navigate to = "/clientes" />
         }
         return(
-            <div className="col text-center">
+            <div className="text-center">
                 <h1 className='title'>CLIENTES</h1>
                 <Link className="btn btn-success justify-content-center" to = "/agregarCliente">Agregar Cliente</Link>
-                <table className="table table-hover table-responsive table-md align-middle table-bordered">
+                <table className="table table-hover  table-md table-bordered">
                     <thead className="table-success">
                         <tr>
                             <th>Cédula</th>
-                            <th>Nombre Completo</th>
+                            <th>Nombre Completo</   th>
                             <th>Dirección</th>
                             <th>Télefono</th>
                             <th>Correo Electrónico</th>
@@ -68,11 +70,11 @@ class Clientes extends Component {
                                             <td>{cliente.telefono}</td>
                                             <td>{cliente.email}</td>
                                             <td>
-                                            <Link style={{width: "70px", margin: "5px"}} className="btn btn-outline-primary btn-sm" to = {"/EditarCliente/"+cliente._id}>Editar</Link>
+                                                {/* Boton Editar */}
+                                                <Link style={{width: "70px", margin: "5px"}} className="btn btn-outline-primary btn-sm" to = {"/EditarCliente/"+cliente._id}>Editar</Link>
+                                                {/* Boton Eliminar */}
                                                 <button style={{width: "70px"}} className="btn btn-outline-danger btn-sm" onClick = {
-                                                    ()=>{
-                                                        this.borrarCliente(cliente._id)
-                                                    }
+                                                    ()=>{this.borrarCliente(cliente._id)}
                                                 }>Eliminar</button>
                                             </td>
                                         </tr>
@@ -84,8 +86,5 @@ class Clientes extends Component {
                 </table>
             </div>
         )
-
     }
-}
-
-export default Clientes;
+} export default Clientes;
