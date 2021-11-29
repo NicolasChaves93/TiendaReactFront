@@ -24,15 +24,12 @@ class AgregarProducto extends Component {
             nitproveedor: this.nit.current.value,
             precio_compra: this.precioCompra.current.value,
             iva_compra: this.iva.current.value,
-            precio_venta: this.precioVenta.current.value,
-
+            precio_venta: this.precioVenta.current.value
         }
         console.log(producto);
         this.setState({
             producto: producto
         })
-
-        console.log(this.state.producto.codigo_producto);
 
         axios.post("http://localhost:8080/api/productos/producto",producto)
         .then(res=>{
