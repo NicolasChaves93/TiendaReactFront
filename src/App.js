@@ -16,6 +16,7 @@ import EditarCliente from "./components/EditarCliente";
 import Proveedores from "./pages/Proveedores"
 import AgregarProveedor from "./components/AgregarProveedor"
 import EditarProveedor from "./components/EditarProveedor"
+import Ventas from "./pages/Ventas";
 
 
 function App() {
@@ -37,6 +38,8 @@ function App() {
           <Route exact path='/proveedores' element={<Proveedores/>}/>
           <Route exact path='/agregarProveedor' element={<AgregarProveedor/>}/>
           <Route exact path='/editarProveedor/:id' element={<EditarProveedor/>}/>
+          {/* Enlace Ventas */}
+          <Route exact path='/ventas' element={<Ventas/>}/>
         </Routes>
       </Router>
     </React.Fragment>
