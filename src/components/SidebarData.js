@@ -40,4 +40,10 @@ export const SidebarData = [
         icon: <IoIcons.IoIosPaper />,
         cNAme: 'nav-text'
     },
+    {
+        title: 'Consolidado',
+        path: '/consolidado',
+        icon: <IoIcons.IoIosPaper />,
+        cNAme: 'nav-text'
+    },
 ]
