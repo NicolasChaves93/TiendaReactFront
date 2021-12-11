@@ -62,6 +62,19 @@ export default class EditarProducto extends Component {
             }
         })
     }
+
+    /* Al ingregsar el IVA se valida el valor total */
+    calcularTotal = () =>{
+        const Iva = parseInt(this.precioCompra.current.value*this.iva.current.value/100)
+        const total = parseInt(this.precioCompra.current.value) + Iva;
+        var producto = this.state.producto
+        producto["precio_venta"] = total;
+
+        this.setState({
+            producto: producto
+        })
+    }
+
     render(){
         if(this.state.status === "sucess"){
             return <Navigate to = "/productos" />
@@ -96,7 +109,7 @@ export default class EditarProducto extends Component {
                         </td>
                         <td>
                             <div className="input-group mb-3" >
-                                <input type="number" name="iva" ref = {this.iva} className="form-control" placeholder="IVA" aria-label="iva" aria-describedby="button-addon2" defaultValue={this.state.producto.iva_compra}/>
+                                <input type="number" name="iva" ref = {this.iva} className="form-control" placeholder="IVA" aria-label="iva" aria-describedby="button-addon2" defaultValue={this.state.producto.iva_compra} onChange={this.calcularTotal} />
                             </div>
                         </td>
                         <td>
