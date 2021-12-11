@@ -16,11 +16,13 @@ class Ventas extends Component {
         valTotal: 0,
         status: false,
         client:[],
+        consecutivo:0
     }
 
     componentWillMount(){
         this.getClientes();
         this.getProductos();
+        this.consecutivo();
     }
 
     /* Función para consumir la API y traer los clientes */
@@ -45,6 +47,7 @@ class Ventas extends Component {
         });
     }
 
+    /* Adicionar un producto a la lista */
     getProducto = (id) =>{
         axios.get("http://localhost:8080/api/productos/prodcuto/"+id)
         .then(res => {
@@ -61,7 +64,6 @@ class Ventas extends Component {
 
     /* Función que me guarda el nombre del cliente obtenido desde el select */
     handleChangeCli = (c) =>{
-        console.log(c.target.value)
         let cedula = Number(c.target.value)
         this.state.listClientes.filter(cl => cl.cedula === cedula ).map(filteredClient =>(
             this.setState({
@@ -83,7 +85,7 @@ class Ventas extends Component {
                 id: this.state.prod._id,
                 cantidad_producto: this.state.cant,
                 codigo_producto: this.state.prod.codigo_producto,
-                nombre: this.state.prod.nombre_producto,
+                nombre_producto: this.state.prod.nombre_producto,
                 valor_venta: this.state.valxCant,
                 valoriva: IVA,
                 valor_total: total
@@ -171,13 +173,32 @@ class Ventas extends Component {
         e.preventDefault();
         var venta = {
                 cedula_cliente: this.state.client.cedula,
-                codigo_venta: 1,
+                codigo_venta: this.state.consecutivo,
                 detalle_venta: this.state.addProductos,
                 valor_venta: this.state.totalVenta,
                 ivaventa: this.state.totalIva,
                 total_venta: this.state.valTotal
         }
-        console.log(venta);
+        console.log(venta)
+        axios.post("http://localhost:8080/api/ventas/venta",venta)
+        .then(res=>{
+            if(res.data){
+                this.setState({
+                    ventas:res.data
+                })
+            }
+        })
+    }
+
+    /* Obtiene todas las ventas registradas para generar el consecutivo */
+    consecutivo = () =>{
+        axios.get("http://localhost:8080/api/ventas/")
+        .then(res => {
+            this.setState({
+                consecutivo: res.data.length + 1
+            })
+        });
+
     }
 
     render(){
@@ -191,7 +212,7 @@ class Ventas extends Component {
                             <select name = "clientes" className ="form-control" id="inputNombre" onChange = {this.handleChangeCli} required>
                                     <option></option>
                                     {this.state.listClientes.map(c=>(
-                                        <option key={c.id} value={c.cedula}>{c.cedula}</option>
+                                        <option key={c.cedula} value={c.cedula}>{c.cedula}</option>
                                     ))}
                             </select>
                         </div>
@@ -201,7 +222,7 @@ class Ventas extends Component {
                         </div>
                         <div className="col-md-3 mb-3">
                             <label for="inputConsec">Consecutivo</label>
-                            <input type="text" className="form-control" id="inputConsec" name="consecutivo" aria-describedby="button-addon2" disabled/>
+                            <input type="text" className="form-control" id="inputConsec" name="consecutivo" aria-describedby="button-addon2" value={this.state.consecutivo} disabled/>
                         </div>
                     </div>
                     <div class="form-row">
