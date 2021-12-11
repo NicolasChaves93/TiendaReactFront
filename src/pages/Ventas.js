@@ -73,28 +73,33 @@ class Ventas extends Component {
     /* Agrega un producto a la venta */
     addProducto = (e) =>{
         e.preventDefault();
+        /* Calculo el IVA total de la venta */
+        const IVA = this.state.valxCant * (this.state.prod.iva_compra/100);
+        const total = this.state.valxCant + IVA;
+
         /* Obtengo los valores del producto seleccionado */
         if(this.state.prod.nombre_producto!=null && this.state.cant >0 && this.state.valxCant > 0){
             var productos ={
                 id: this.state.prod._id,
-                codigo: this.state.prod.codigo_producto,
+                cantidad_producto: this.state.cant,
+                codigo_producto: this.state.prod.codigo_producto,
                 nombre: this.state.prod.nombre_producto,
-                cantidad: this.state.cant,
-                valxCant: this.state.valxCant
+                valor_venta: this.state.valxCant,
+                valoriva: IVA,
+                valor_total: total
             }
-            /* Calculo el IVA total de la venta */
-            let IVA = this.state.valxCant * 0.19;
+
             /* Agrego los valores de total venta y total IVA */
             this.setState({
                 totalVenta: this.state.totalVenta + this.state.valxCant,
                 totalIva: this.state.totalIva + IVA,
             });
             /* Calculo el valor total de la venta */
-            let total = (this.state.totalVenta + this.state.valxCant) + (this.state.totalIva + IVA);
+            const totalVenta = (this.state.totalVenta + this.state.valxCant) + (this.state.totalIva + IVA);
 
             /* Almaceno los datos */
             this.setState({
-                valTotal: total,
+                valTotal: totalVenta,
                 addProductos:[...this.state.addProductos, productos],
                 status: true,
                 cant: 0,
@@ -102,7 +107,6 @@ class Ventas extends Component {
             });
             /* Elimino el producto de la lista */
             const deleteP = this.state.listProductos.filter(producto => producto._id !== this.state.prod._id);
-            console.log(deleteP);
             this.setState({
                 listProductos: deleteP,
                 prod: []
@@ -162,6 +166,7 @@ class Ventas extends Component {
         })
     }
 
+    /* Envia la venta a la API para ser guardada */
     confirm =(e) =>{
         e.preventDefault();
         var venta = {
@@ -172,7 +177,6 @@ class Ventas extends Component {
                 ivaventa: this.state.totalIva,
                 total_venta: this.state.valTotal
         }
-
         console.log(venta);
     }
 
