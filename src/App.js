@@ -17,6 +17,7 @@ import Proveedores from "./pages/Proveedores"
 import AgregarProveedor from "./components/AgregarProveedor"
 import EditarProveedor from "./components/EditarProveedor"
 import Ventas from "./pages/Ventas";
+import Reportes from "./pages/Reportes";
 
 
 function App() {
@@ -40,6 +41,8 @@ function App() {
           <Route exact path='/editarProveedor/:id' element={<EditarProveedor/>}/>
           {/* Enlace Ventas */}
           <Route exact path='/ventas' element={<Ventas/>}/>
+          {/* Enlace Reporte */}
+          <Route exact path='/reportes' element={<Reportes/>}/>
         </Routes>
       </Router>
     </React.Fragment>

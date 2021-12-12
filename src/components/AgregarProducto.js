@@ -13,6 +13,7 @@ class AgregarProducto extends Component {
 
     state = {
         producto: [],
+        total: null,
         status : null
     }
 
@@ -40,6 +41,16 @@ class AgregarProducto extends Component {
                 })
             }
         })
+    }
+
+    /* Al ingregsar el IVA se valida el valor total */
+    calcularTotal = () =>{
+        const Iva = parseInt(this.precioCompra.current.value*this.iva.current.value/100)
+        const total = parseInt(this.precioCompra.current.value) + Iva;
+        this.setState({
+            total: total
+        })
+
     }
     render(){
         if(this.state.status === "sucess"){
@@ -75,12 +86,12 @@ class AgregarProducto extends Component {
                         </td>
                         <td>
                             <div className="input-group mb-3" >
-                                <input type="number" name="iva" ref = {this.iva} className="form-control" placeholder="IVA" aria-label="iva" aria-describedby="button-addon2"/>
+                                <input type="number" name="iva" ref = {this.iva} className="form-control" placeholder="IVA" aria-label="iva" aria-describedby="button-addon2" onChange={this.calcularTotal} />
                             </div>
                         </td>
                         <td>
                             <div className="input-group mb-3" >
-                                <input type="text" name="precioVenta" ref = {this.precioVenta} className="form-control" placeholder="Precio Venta" aria-label="precioVenta" aria-describedby="button-addon2"/>
+                                <input type="text" name="precioVenta" ref = {this.precioVenta} className="form-control" placeholder="Precio Venta" aria-label="precioVenta" aria-describedby="button-addon2" defaultValue={this.state.total}/>
                             </div>
                         </td>
                     </tr>
