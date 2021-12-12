@@ -3,10 +3,11 @@ import axios from 'axios';
 import { Link } from "react-router-dom";
 import {Navigate} from  'react-router-dom'
 import swal from 'sweetalert';
+import Ventas from './Ventas';
 
-class Productos extends Component {
+class consolidado extends Component {
     state = {
-        productos:[]
+        consolidado:[]
     }
 
     componentWillMount(){
@@ -14,47 +15,30 @@ class Productos extends Component {
     }
 
     getProductos = () =>{
-        axios.get("http://localhost:8080/api/consolidado/")
+        axios.get("http://localhost:8080/api/ventas/")
         .then(res => {
             console.log(res.data);
             this.setState({
-                productos: res.data
+                consolidado: res.data
             })
         });
     }
 
-    borrarProducto = (id) =>{
-        axios.delete("http://localhost:8080/api/productos/producto/"+id)
-        .then(res=>{
-            this.setState({
-                productos: res.data,
-                status: "deleted"
-            })
-            swal("Articulo eliminado",
-            "El articulo ha sido eliminado correctamente",
-            "success"
-            );
-            window.location.reload(true);
-        })
-    }
+
     render(){
         if(this.state.status === "deleted"){
-            return <Navigate to = "/productos" />
+            return <Navigate to = "/ventas" />
         }
         return(
             <div className="text-center">
-                <h1 className='title'>PRODUCTOS</h1>
-                <Link className="btn btn-success justify-content-center" to = "/agregarProducto">Agregar Producto</Link>
+                <h1 className='title'>Ventas</h1>
                 <table className="table table-hover table-md table-bordered">
                     <thead className="table-success">
                         <tr>
                             <th>Código Producto</th>
                             <th>Nombre Producto</th>
                             <th>Nit Provedor</th>
-                            <th>Precio de compra</th>
-                            <th>Iva</th>
                             <th>Precio de venta</th>
-                            <th>Acciones</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -69,15 +53,7 @@ class Productos extends Component {
                                             <td>{producto.precio_compra}</td>
                                             <td>{producto.iva_compra}</td>
                                             <td>{producto.precio_venta}</td>
-                                            <td>
-                                            <Link style={{width: "70px", margin: "5px"}} className="btn btn-outline-primary btn-sm" to = {"/editarProducto/"+producto._id}>Editar</Link>
-                                                <button style={{width: "70px"}} className="btn btn-outline-danger btn-sm" onClick = {
-                                                    ()=>{
-                                                        this.borrarProducto(producto._id)
-                                                    }
-                                                }>Eliminar</button>
-                                            </td>
-                                        </tr>
+                                            </tr>
                                     </React.Fragment>
                                 );
                             })
@@ -90,4 +66,4 @@ class Productos extends Component {
     }
 }
 
-export default Productos;
+export default Ventas;
