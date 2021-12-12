@@ -187,6 +187,8 @@ class Ventas extends Component {
                     ventas:res.data
                 })
             }
+            swal("Venta exitosa", "La venta ha sido guardada con exito","success");
+            window.location.reload(true);
         })
     }
 
