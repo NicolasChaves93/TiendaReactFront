@@ -29,8 +29,6 @@ class AgregarCliente extends Component {
             cliente: cliente
         })
 
-        console.log(this.state.cliente.cedula);
-
         axios.post("http://localhost:8080/api/clientes/cliente",cliente)
         .then(res=>{
             if(res.data){

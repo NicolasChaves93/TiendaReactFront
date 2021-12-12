@@ -125,7 +125,7 @@ class Ventas extends Component {
         let product = this.state.addProductos[pos];
         /* Calcular el nuevo total, IVA y valorTotalconIVA*/
         let totalVenta = this.state.totalVenta - product.valxCant;
-        let IVA = totalVenta * 0.19;
+        let IVA = totalVenta * (product.iva_compra/100);
         let valTotal = totalVenta + IVA;
         /* Elimino el producto de la venta y almaceno los nuevos valores*/
         const deleteP = this.state.addProductos.filter(producto => producto.id !== id);
@@ -172,12 +172,12 @@ class Ventas extends Component {
     confirm =(e) =>{
         e.preventDefault();
         var venta = {
-                cedula_cliente: this.state.client.cedula,
-                codigo_venta: this.state.consecutivo,
-                detalle_venta: this.state.addProductos,
-                valor_venta: this.state.totalVenta,
-                ivaventa: this.state.totalIva,
-                total_venta: this.state.valTotal
+            cedula_cliente: this.state.client.cedula,
+            codigo_venta: this.state.consecutivo,
+            detalle_venta: this.state.addProductos,
+            valor_venta: this.state.totalVenta,
+            ivaventa: this.state.totalIva,
+            total_venta: this.state.valTotal
         }
         console.log(venta)
         axios.post("http://localhost:8080/api/ventas/venta",venta)
@@ -257,7 +257,7 @@ class Ventas extends Component {
                     <hr></hr>
                     {this.state.status
                     ?<div>
-                        <AddProductos id = {0} add={this.state.addProductos} deleteProducto={this.deleteProducto} />
+                        <AddProductos key = {0} add={this.state.addProductos} deleteProducto={this.deleteProducto} />
                         <hr></hr>
                         <div style={{margin: "10px"}}>
                             <div className="form-row">
