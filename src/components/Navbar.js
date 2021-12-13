@@ -9,10 +9,12 @@ import { Profile } from "./Profile";
 import { useAuth0 } from "@auth0/auth0-react";
 import {LoginButton} from "./Login";
 
-function Navbar() {
+function Navbar(props) {
     const [sidebar, setSidebar] = useState(false);
     const showSidebar = () => setSidebar(!sidebar);
     const {isAuthenticated} = useAuth0();
+
+    let textMayuscula = props.ciudad.toUpperCase();
 
     return (
     <React.Fragment>
@@ -21,7 +23,7 @@ function Navbar() {
             <Link to="#" className="menu-bars">
                 <FaIcons.FaBars onClick={showSidebar} />
             </Link>
-            <span><h2 style={{width: "1000px", color: "white"}}>TIENDA GENERICA</h2> </span>
+            <span></span><h3 style={{width: "1000px", color: "white"}}>TIENDA GENERICA {props.isCiudad?(<h6>{textMayuscula}</h6> ): (<></>)}</h3>
             {isAuthenticated ?(
                 <div className="dropdown">
                     <a style = {{color: "white"}} href="/#" className="nav-link dropdown-toggle" data-toggle="dropdown">Cerrar sesión</a>

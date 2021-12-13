@@ -64,6 +64,7 @@ class Reportes extends Component {
         return (
             <div className="text-center">
                 <h2 className='title'>REPORTES</h2>
+                {this.props.isCiudad?(<>
                 <button type="button" name="listBoton" id="listBoton" className="btn btn-outline-info justify-content-center" onClick={this.listClick} >Listado de Clientes</button>
                 <span></span>
                 <button type="button" name="ventaBoton" id="ventaBoton" className="btn btn-outline-info justify-content-center" onClick={this.listVenta}>Ventas por Cliente</button>
@@ -108,6 +109,7 @@ class Reportes extends Component {
                 </div>
                 : <></>
                 }
+                </>):<h4 style={{color: "red"}}>Debe seleccionar una sucursal</h4>}
             </div>
         )
     }

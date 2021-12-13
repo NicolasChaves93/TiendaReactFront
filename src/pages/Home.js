@@ -1,25 +1,38 @@
-import React from 'react'
-import { Link } from "react-router-dom";
+import React, { Component } from 'react'
 
-function Home() {
-    return (
-        <div><h1 className='title'>HOME</h1>
-            <h1 align="center">Seleccione la ciudad</h1>
-            <table align="center">
-                <tr>
-                    <td>
-                        <Link className="btn btn-success justify-content-center" to = "/consolidadoBogota">Bogota</Link>
-                    </td>
-                    <td>
-                        <Link className="btn btn-success justify-content-center" to = "/consolidadoMedellin">Medellin</Link>
-                    </td>
-                    <td>
-                        <Link className="btn btn-success justify-content-center" to = "/consolidadoCali">Cali</Link>
-                    </td>
-                </tr>
-            </table>
-        </div>
-    );
+class Home extends Component{
+    state = {
+        isCiudad: false,
+        ciudad: null
+    }
+
+    obtenerNom = (e) =>{
+        const name = e.target.name;
+        this.setState({
+            isCiudad: true,
+            ciudad: name
+        })
+        this.props.obtenerCiudad(name,true);
+    }
+
+    render(){
+        return (
+            <div className="text-center">
+                <h1 className='title'>HOME</h1>
+                {this.state.isCiudad ?
+                <h2>Bienvenido a la sucursal de {this.state.ciudad}</h2>
+                :<div>
+                    <h3>Seleccione la ciudad</h3>
+                    <button name="Bogota" className="btn btn-success justify-content-center" onClick={this.obtenerNom}>Bogota</button>
+                    <span></span>
+                    <button name="Cali" className="btn btn-success justify-content-center" onClick={this.obtenerNom}>Cali</button>
+                    <span></span>
+                    <button name="Medellin" className="btn btn-success justify-content-center" onClick={this.obtenerNom}>Medellin</button>
+                </div>
+                }
+            </div>
+        );
+    }
 }
 
 export default Home;

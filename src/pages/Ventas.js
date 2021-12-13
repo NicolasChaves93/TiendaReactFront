@@ -177,7 +177,8 @@ class Ventas extends Component {
             detalle_venta: this.state.addProductos,
             valor_venta: this.state.totalVenta,
             ivaventa: this.state.totalIva,
-            total_venta: this.state.valTotal
+            total_venta: this.state.valTotal,
+            nombre_ciudad: this.props.ciudad
         }
         console.log(venta)
         axios.post("http://localhost:8080/api/ventas/venta",venta)
@@ -205,8 +206,9 @@ class Ventas extends Component {
 
     render(){
         return (
-            <div>
+            <div className="text-center">
                 <h1 className='title'>Ventas</h1>
+                {this.props.isCiudad?(<>
                 <form className ="table">
                     <div className="form-row">
                         <div className="col-md-4 mb-3">
@@ -298,6 +300,7 @@ class Ventas extends Component {
                     : <></>
                     }
                 </form>
+                </>):<h4 style={{color: "red"}}>Debe seleccionar una sucursal</h4>}
             </div>
         )
     }
