@@ -18,6 +18,7 @@ import AgregarProveedor from "./components/AgregarProveedor"
 import EditarProveedor from "./components/EditarProveedor"
 import Ventas from "./pages/Ventas";
 import Reportes from "./pages/Reportes";
+import Consolidado from "./pages/Consolidado";
 
 
 function App() {
@@ -43,6 +44,9 @@ function App() {
           <Route exact path='/ventas' element={<Ventas/>}/>
           {/* Enlace Reporte */}
           <Route exact path='/reportes' element={<Reportes/>}/>
+          {/* Enlace Consolidado */}
+          <Route exact path='/consolidado' element={<Consolidado/>}/>
+
         </Routes>
       </Router>
     </React.Fragment>

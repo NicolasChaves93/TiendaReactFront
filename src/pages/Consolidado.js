@@ -3,7 +3,7 @@ import axios from 'axios';
 import { Link } from "react-router-dom";
 import {Navigate} from  'react-router-dom'
 import swal from 'sweetalert';
-import Ventas from './Ventas';
+
 
 class consolidado extends Component {
     state = {
@@ -31,39 +31,36 @@ class consolidado extends Component {
         }
         return(
             <div className="text-center">
-                <h1 className='title'>Ventas</h1>
+                <h1 className='title'>Consolidado</h1>
                 <table className="table table-hover table-md table-bordered">
                     <thead className="table-success">
                         <tr>
-                            <th>Código Producto</th>
-                            <th>Nombre Producto</th>
-                            <th>Nit Provedor</th>
-                            <th>Precio de venta</th>
+                            <th>Ciudad</th>
+                            <th>Valor Total Ventas</th>
                         </tr>
                     </thead>
                     <tbody>
-                        {
-                            this.state.productos.map((producto) =>{
-                                return(
-                                    <React.Fragment>
-                                        <tr>
-                                            <td>{producto.codigo_producto}</td>
-                                            <td>{producto.nombre_producto}</td>
-                                            <td>{producto.nitproveedor}</td>
-                                            <td>{producto.precio_compra}</td>
-                                            <td>{producto.iva_compra}</td>
-                                            <td>{producto.precio_venta}</td>
-                                            </tr>
-                                    </React.Fragment>
-                                );
-                            })
-                        }
+                        <tr>
+                            <td></td>
+                            <td></td>
+                        </tr>
                     </tbody>
                 </table>
+                <span></span>
+                <div className="form-row">
+                        <div className="col-md-2 mb-2"></div>
+                        <div className="col-md-4 mb-4"></div>
+                        <div className="col-md-2 mb-2">
+                            <label for="inputCant">Total Ventas Tienda $</label>
+                        </div>
+                        <div className="col-md-2 mb-2">
+                            <input type="numeric" name="totalVentas" className="form-control" id="inputtotalV" aria-label="totalVentas" aria-describedby="button-addon2"  value={this.state.totalV} disabled/>
+                        </div>
+                    </div>
             </div>
         )
 
     }
 }
 
-export default Ventas;
+export default consolidado;
