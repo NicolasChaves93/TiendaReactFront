@@ -7,23 +7,32 @@ import swal from 'sweetalert';
 
 class consolidado extends Component {
     state = {
-        consolidado:[]
+        consolidados:[],
+        totalV: 0
     }
 
     componentWillMount(){
-        this.getProductos();
+        this.getConsolidado();
     }
 
-    getProductos = () =>{
-        axios.get("http://localhost:8080/api/ventas/")
+    getConsolidado = () =>{
+        axios.get("http://localhost:8080/api/consolidado/")
         .then(res => {
             console.log(res.data);
+            this.sumaVenta(res.data)
             this.setState({
-                consolidado: res.data
+                consolidados: res.data
             })
         });
     }
 
+    sumaVenta = (valor) =>{
+        valor.map(v=>(
+            this.setState({
+                totalV: this.state.totalV + v.total_ventas
+            })
+        ))
+    }
 
     render(){
         if(this.state.status === "deleted"){
@@ -31,7 +40,7 @@ class consolidado extends Component {
         }
         return(
             <div className="text-center">
-                <h1 className='title'>Consolidado</h1>
+                <h1 className='title'>CONSOLIDADO</h1>
                 <table className="table table-hover table-md table-bordered">
                     <thead className="table-success">
                         <tr>
@@ -40,10 +49,16 @@ class consolidado extends Component {
                         </tr>
                     </thead>
                     <tbody>
-                        <tr>
-                            <td></td>
-                            <td></td>
-                        </tr>
+                        {this.state.consolidados.map( c=>{
+                            return(
+                                <React.Fragment>
+                                    <tr>
+                                        <td>{c.ciudad}</td>
+                                        <td>{c.total_ventas}</td>
+                                    </tr>
+                                </React.Fragment>
+                            );
+                        })}
                     </tbody>
                 </table>
                 <span></span>
